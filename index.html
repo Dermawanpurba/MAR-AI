@@ -149,6 +149,15 @@
                     </div>
                 </div>
 
+                <!-- RAW TEXT FALLBACK -->
+                <div class="space-y-2 mt-6 p-5 bg-amber-900/10 border border-amber-500/20 rounded-2xl">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Hasil Teks Mentah (Fallback)
+                    </h4>
+                    <p class="text-[10px] text-slate-400">Jika AI gagal menyusun otomatis ke tabel di atas, silakan <b>copy-paste</b> teks bacaan mentah dari kotak ini secara manual:</p>
+                    <textarea id="res-raw-text" rows="5" class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 text-sm outline-none resize-y text-slate-300 font-mono" placeholder="Teks mentah hasil scan akan muncul di sini..."></textarea>
+                </div>
+
                 <button onclick="saveToSheets()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-5 rounded-2xl shadow-lg shadow-emerald-600/20 transition-all mt-6 active:scale-[0.98]">
                     Simpan Semua Baris ke Database
                 </button>
@@ -303,13 +312,12 @@
                         } else if (actionName === 'saveReport') {
                             resolve({ success: true, rowsAdded: params.tasks.length });
                         } else if (actionName === 'analyzeImageWithAI') {
-                            // Mocking format JSON baru yang memiliki Array of Tasks
                             resolve({
                                 header: { nama: "TONI", tanggal: "2026-04-13", shift: "" },
                                 tasks: [
-                                    { no_wo: "2604-0509", time_start: "07:30", time_stop: "08:29", code_unit: "805", description: "Simulasi Baris 1: repair and reposisi pin spring" },
-                                    { no_wo: "2604-0512", time_start: "08:40", time_stop: "10:09", code_unit: "801", description: "Simulasi Baris 2: replace bolt bracket cylinder" }
-                                ]
+                                    { no_wo: "2604-0509", time_start: "07:30", time_stop: "08:29", code_unit: "805", description: "Simulasi Baris 1: repair and reposisi pin spring" }
+                                ],
+                                raw_text: "PROBLEM=baut hanger spring depan kanan dan baut safety transmisi kendor dan radio tidak bisa mengirim. ACTION=check and replace bolt hanger spring depan kanan 1 Pcs tightening all nut bolt hanger spring depan dan baut safety transmisi repair PTT radio.\n\n(Ini adalah contoh hasil fallback teks mentah. Jika Anda melihat ini, berarti server AI Google Apps Script Anda gagal dihubungi.)"
                             });
                         } else resolve({});
                     }, 1500);
@@ -456,6 +464,9 @@
                 } else {
                     container.insertAdjacentHTML('beforeend', createTaskHTML()); // At least 1 empty row
                 }
+
+                // Populate Raw Text Fallback
+                document.getElementById('res-raw-text').value = res.raw_text || 'Teks mentah hasil OCR tidak tersedia. AI mungkin gagal membacanya.';
 
                 lucide.createIcons();
                 document.getElementById('result-container').classList.remove('hidden');
