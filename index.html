@@ -465,8 +465,12 @@
                     container.insertAdjacentHTML('beforeend', createTaskHTML()); // At least 1 empty row
                 }
 
-                // Populate Raw Text Fallback
-                document.getElementById('res-raw-text').value = res.raw_text || 'Teks mentah hasil OCR tidak tersedia. AI mungkin gagal membacanya.';
+                // Populate Raw Text Fallback (Diperbarui agar tidak pernah kosong)
+                if (res.raw_text) {
+                    document.getElementById('res-raw-text').value = res.raw_text;
+                } else {
+                    document.getElementById('res-raw-text').value = "Teks mentah ('raw_text') tidak dikembalikan oleh AI.\n\nBerikut adalah Raw JSON yang berhasil ditangkap:\n" + JSON.stringify(res, null, 2) + "\n\n*Note: Pastikan Code.gs Anda sudah versi terbaru dan Anda sudah melakukan 'New Deployment' di Apps Script.";
+                }
 
                 lucide.createIcons();
                 document.getElementById('result-container').classList.remove('hidden');
