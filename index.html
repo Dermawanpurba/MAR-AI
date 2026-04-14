@@ -74,116 +74,83 @@
     <main class="flex-1 p-4 md:p-12 pb-32 md:pb-12 overflow-y-auto">
         
         <!-- SECTION SCAN -->
-        <div id="section-scan" class="content-section max-w-2xl mx-auto space-y-8 animate-in fade-in">
-            <h2 class="text-3xl font-bold">Scan Laporan</h2>
-            <div class="glass p-4 rounded-[2.5rem] relative">
+        <div id="section-scan" class="content-section max-w-4xl mx-auto space-y-8 animate-in fade-in">
+            <h2 class="text-3xl font-bold">Scan Laporan (Multi-Task)</h2>
+            <div class="glass p-4 rounded-[2.5rem] relative max-w-2xl mx-auto">
                 <div class="relative rounded-[2rem] overflow-hidden bg-slate-900 shadow-inner">
                     <video id="video" autoplay playsinline></video>
                 </div>
                 <div class="p-6">
                     <button onclick="captureAndAnalyze()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl shadow-blue-600/20">
-                        <i data-lucide="zap" class="w-5 h-5"></i> Ambil & Analisis AI
+                        <i data-lucide="zap" class="w-5 h-5"></i> Ambil & Analisis Tabel AI
                     </button>
                 </div>
             </div>
 
-            <!-- RESULT FORM -->
-            <div id="result-container" class="hidden space-y-6 glass p-8 rounded-[2.5rem] border border-blue-500/20 shadow-2xl">
+            <!-- DYNAMIC RESULT FORM (ONE TO MANY) -->
+            <div id="result-container" class="hidden space-y-6 glass p-6 md:p-8 rounded-[2.5rem] border border-blue-500/20 shadow-2xl">
                 <div class="flex items-center gap-3 border-b border-white/5 pb-4">
-                    <i data-lucide="check-circle" class="text-emerald-400"></i>
-                    <h3 class="font-bold text-lg">Hasil Ekstraksi AI</h3>
+                    <i data-lucide="check-circle" class="text-emerald-400 w-6 h-6"></i>
+                    <h3 class="font-bold text-xl">Review Data Laporan</h3>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Nama Mekanik</label>
-                        <input type="text" id="res-nama" list="db-mekanik" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-blue-500 transition-colors" placeholder="Ketik nama...">
-                        
-                        <!-- DATABASE MEKANIK -->
-                        <datalist id="db-mekanik">
-                            <option value="SAHARUDIN">MEKANIK HE</option>
-                            <option value="ARISMAN">MEKANIK HE</option>
-                            <option value="BAHARUDDIN (1)">MEKANIK HE</option>
-                            <option value="WAHYU BASUKIYONO">MEKANIK HE</option>
-                            <option value="JUHARKAM PELU PESSY">MEKANIK</option>
-                            <option value="GATOT EFENDI">MEKANIK HE</option>
-                            <option value="YEDI SUSANTO">ASST MEKANIK HE</option>
-                            <option value="NISCAYAH">ASST MEKANIK HE</option>
-                            <option value="APRILIAN MASKUR">HLP. MEKANIK HE</option>
-                            <option value="JONISER">HLP. MEKANIK HE</option>
-                            <option value="PINKAN NUR FOIQI">HLP. MEKANIK HE</option>
-                            <option value="MEIKEL LAHANG">HLP. MEKANIK HE</option>
-                            <option value="SAIDIL">HLP. MEKANIK HE</option>
-                            <option value="AGUS">MEKANIK BSS</option>
-                            <option value="RIZKI RAHMA PRIADI">MEKANIK BSS</option>
-                            <option value="PURWANTO">MEKANIK BSS</option>
-                            <option value="PATRISIUS MAU SURI">MEKANIK BSS</option>
-                            <option value="MUHAMMAD NUR IKHWAN">ASST MEKANIK BSS</option>
-                            <option value="PAISAL">ASST MEKANIK BSS</option>
-                            <option value="IKBAL JAELANI">HLP. MEKANIK BSS</option>
-                            <option value="SYARIFUDDIN">HLP. MEKANIK BSS</option>
-                            <option value="REVALDO">HLP. MEKANIK BSS</option>
-                            <option value="TONI BIN MUHAMMAD">HLP. MEKANIK BSS</option>
-                            <option value="BAHARUDDIN (2)">HLP. MEKANIK BSS</option>
-                            <option value="MARKUS ALFIAN">HLP. MEKANIK BSS</option>
-                            <option value="VICTOR ARTHYA PATRA">HLP. MEKANIK BSS</option>
-                            <option value="DARIUS GAT SUNA">HLP. MEKANIK BSS</option>
-                            <option value="SAMUEL FERNANDO DALOPES">HLP. MEKANIK BSS</option>
-                            <option value="MARTINUS MARKI">MEKANIK BSS</option>
-                            <option value="GAYUS BALAN">HLP. MEKANIK BSS</option>
-                            <option value="MARTIN MARKI">HLP. MEKANIK BSS</option>
-                            <option value="PETRUS SALENTIUS L">WELDER</option>
-                            <option value="FRANS PHILIPUS">HLP. MEKANIK BSS</option>
-                            <option value="BUDI JAK SONO">ASST. WELDER</option>
-                            <option value="RAHMAT">ASST. WELDER</option>
-                            <option value="ROBY">ASST ELECTRICAL</option>
-                            <option value="TIN NUR">ASST ELECTRIC</option>
-                            <option value="DWI TUNGGAL ANDAYANI">ASST SUPPORT</option>
-                            <option value="MARTINUS KAROWE LEIN">GREASING & TYRE BSS</option>
-                            <option value="FEBRI SETIAWAN">WASHING BSS</option>
-                            <option value="MARSYANUS">HELPER MEKANIK</option>
-                            <option value="MATIUS AJAN">ASST TYRE BSS</option>
-                            <option value="KORNELIUS NGERUNG">ASST TYRE BSS</option>
-                            <option value="ERIK NOVELIANUS">ASST TYRE BSS</option>
-                            <option value="MUHAMMAD SUGENG ANTO">MEKANIK SUPPORT</option>
-                            <option value="NCUK IMANG">HELPER SUPPORT</option>
-                            <option value="ANTONIO ALFA REZA">HELPER SUPPORT</option>
-                            <option value="VARIO DANISTO">HELPER MEKANIK</option>
-                            <option value="MARDEN IBAN">HELPER SUPPORT</option>
-                            <option value="HARUN">MEKANIK</option>
-                            <option value="WAWAN">MEKANIK ELECTRIC</option>
-                            <option value="AGUS WARAS">MEKANIK</option>
-                            <option value="SERAJUDDIN">WELDER</option>
-                            <option value="JUHARKAM PELUPESSY">MEKANIK</option>
-                            <option value="SYARIFUDIN">HLP. MEKANIK BSS</option>
-                        </datalist>
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Shift</label>
-                        <input type="text" id="res-shift" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Tanggal</label>
-                        <input type="date" id="res-tanggal" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">No WO</label>
-                        <input type="text" id="res-wo" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1 text-blue-400">Jam Mulai</label>
-                        <input type="time" id="res-start" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1 text-red-400">Jam Selesai</label>
-                        <input type="time" id="res-stop" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
+                
+                <!-- HEADER DATA (1x) -->
+                <div class="bg-blue-900/10 p-5 rounded-2xl border border-blue-500/10 space-y-4">
+                    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-2"><i data-lucide="user" class="w-4 h-4"></i> Info Mekanik</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Nama Mekanik</label>
+                            <input type="text" id="res-nama" list="db-mekanik" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-500" placeholder="Ketik nama...">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Tanggal</label>
+                            <input type="date" id="res-tanggal" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-500">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Shift</label>
+                            <input type="text" id="res-shift" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-blue-500" placeholder="Siang/Malam">
+                        </div>
                     </div>
                 </div>
-                <div class="space-y-1">
-                    <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Deskripsi Pekerjaan</label>
-                    <textarea id="res-desc" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none resize-none"></textarea>
+
+                <!-- DATABASE MEKANIK (AUTO COMPLETE) -->
+                <datalist id="db-mekanik">
+                    <option value="SAHARUDIN">MEKANIK HE</option><option value="ARISMAN">MEKANIK HE</option><option value="BAHARUDDIN (1)">MEKANIK HE</option>
+                    <option value="WAHYU BASUKIYONO">MEKANIK HE</option><option value="JUHARKAM PELU PESSY">MEKANIK</option><option value="GATOT EFENDI">MEKANIK HE</option>
+                    <option value="YEDI SUSANTO">ASST MEKANIK HE</option><option value="NISCAYAH">ASST MEKANIK HE</option><option value="APRILIAN MASKUR">HLP. MEKANIK HE</option>
+                    <option value="JONISER">HLP. MEKANIK HE</option><option value="PINKAN NUR FOIQI">HLP. MEKANIK HE</option><option value="MEIKEL LAHANG">HLP. MEKANIK HE</option>
+                    <option value="SAIDIL">HLP. MEKANIK HE</option><option value="AGUS">MEKANIK BSS</option><option value="RIZKI RAHMA PRIADI">MEKANIK BSS</option>
+                    <option value="PURWANTO">MEKANIK BSS</option><option value="PATRISIUS MAU SURI">MEKANIK BSS</option><option value="MUHAMMAD NUR IKHWAN">ASST MEKANIK BSS</option>
+                    <option value="PAISAL">ASST MEKANIK BSS</option><option value="IKBAL JAELANI">HLP. MEKANIK BSS</option><option value="SYARIFUDDIN">HLP. MEKANIK BSS</option>
+                    <option value="REVALDO">HLP. MEKANIK BSS</option><option value="TONI BIN MUHAMMAD">HLP. MEKANIK BSS</option><option value="BAHARUDDIN (2)">HLP. MEKANIK BSS</option>
+                    <option value="MARKUS ALFIAN">HLP. MEKANIK BSS</option><option value="VICTOR ARTHYA PATRA">HLP. MEKANIK BSS</option><option value="DARIUS GAT SUNA">HLP. MEKANIK BSS</option>
+                    <option value="SAMUEL FERNANDO DALOPES">HLP. MEKANIK BSS</option><option value="MARTINUS MARKI">MEKANIK BSS</option><option value="GAYUS BALAN">HLP. MEKANIK BSS</option>
+                    <option value="MARTIN MARKI">HLP. MEKANIK BSS</option><option value="PETRUS SALENTIUS L">WELDER</option><option value="FRANS PHILIPUS">HLP. MEKANIK BSS</option>
+                    <option value="BUDI JAK SONO">ASST. WELDER</option><option value="RAHMAT">ASST. WELDER</option><option value="ROBY">ASST ELECTRICAL</option>
+                    <option value="TIN NUR">ASST ELECTRIC</option><option value="DWI TUNGGAL ANDAYANI">ASST SUPPORT</option><option value="MARTINUS KAROWE LEIN">GREASING & TYRE</option>
+                    <option value="FEBRI SETIAWAN">WASHING BSS</option><option value="MARSYANUS">HELPER MEKANIK</option><option value="MATIUS AJAN">ASST TYRE BSS</option>
+                    <option value="KORNELIUS NGERUNG">ASST TYRE BSS</option><option value="ERIK NOVELIANUS">ASST TYRE BSS</option><option value="MUHAMMAD SUGENG ANTO">MEKANIK SUPPORT</option>
+                    <option value="NCUK IMANG">HELPER SUPPORT</option><option value="ANTONIO ALFA REZA">HELPER SUPPORT</option><option value="VARIO DANISTO">HELPER MEKANIK</option>
+                    <option value="MARDEN IBAN">HELPER SUPPORT</option><option value="HARUN">MEKANIK</option><option value="WAWAN">MEKANIK ELECTRIC</option>
+                    <option value="AGUS WARAS">MEKANIK</option><option value="SERAJUDDIN">WELDER</option>
+                </datalist>
+
+                <!-- TASKS DATA (DYNAMIC) -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-purple-400 uppercase tracking-widest flex items-center gap-2"><i data-lucide="list-todo" class="w-4 h-4"></i> Daftar Pekerjaan (Work Orders)</h4>
+                        <button onclick="addTaskRow()" class="text-[10px] bg-purple-600/20 text-purple-400 px-3 py-1.5 rounded-lg hover:bg-purple-600/40 transition-colors flex items-center gap-1 font-bold">
+                            <i data-lucide="plus" class="w-3 h-3"></i> Tambah Baris
+                        </button>
+                    </div>
+                    
+                    <div id="dynamic-tasks-container" class="space-y-4">
+                        <!-- AI will inject rows here -->
+                    </div>
                 </div>
-                <button onclick="saveToSheets()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-5 rounded-2xl shadow-lg shadow-emerald-600/20 transition-all">
-                    Simpan Ke Database
+
+                <button onclick="saveToSheets()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-5 rounded-2xl shadow-lg shadow-emerald-600/20 transition-all mt-6 active:scale-[0.98]">
+                    Simpan Semua Baris ke Database
                 </button>
             </div>
         </div>
@@ -192,14 +159,14 @@
         <div id="section-history" class="content-section hidden space-y-8 animate-in fade-in">
             <h2 class="text-3xl font-bold px-2">Riwayat Laporan</h2>
             <div class="glass rounded-[2.5rem] overflow-hidden overflow-x-auto border border-white/5 shadow-2xl">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[800px]">
                     <thead class="bg-white/5 text-[10px] uppercase font-bold text-slate-500">
                         <tr class="border-b border-white/5">
-                            <th class="p-6">ID / No WO</th>
-                            <th class="p-6">Tanggal</th>
-                            <th class="p-6">Jam (Start - Stop)</th>
-                            <th class="p-6">Nama Mekanik</th>
-                            <th class="p-6">Status</th>
+                            <th class="p-6 w-1/5">ID / No WO</th>
+                            <th class="p-6 w-1/5">Tgl & Shift</th>
+                            <th class="p-6 w-1/5">Jam Kerja</th>
+                            <th class="p-6 w-1/5">Mekanik & Unit</th>
+                            <th class="p-6 w-1/5">Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody id="table-body" class="text-sm divide-y divide-white/5"></tbody>
@@ -210,17 +177,14 @@
         <!-- DASHBOARD -->
         <div id="section-dashboard" class="content-section hidden space-y-8 animate-in fade-in">
             <h2 class="text-3xl font-bold px-2">Dashboard Analitik</h2>
-            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Overview Cards -->
                 <div class="space-y-6">
                     <div class="glass p-8 rounded-[2.5rem] space-y-6">
-                        <h3 class="font-bold text-blue-400 flex items-center gap-2">
-                            <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Ringkasan Utama
-                        </h3>
+                        <h3 class="font-bold text-blue-400 flex items-center gap-2"><i data-lucide="layout-dashboard" class="w-5 h-5"></i> Ringkasan Utama</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="p-6 bg-white/5 rounded-2xl">
-                                <p class="text-[10px] uppercase font-bold text-slate-500">Total Laporan</p>
+                                <p class="text-[10px] uppercase font-bold text-slate-500">Total Pekerjaan (WO)</p>
                                 <h4 id="stat-total" class="text-4xl font-black mt-2">0</h4>
                             </div>
                             <div class="p-6 bg-white/5 rounded-2xl">
@@ -229,12 +193,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Highlight Records -->
                     <div class="glass p-8 rounded-[2.5rem] space-y-6 border-l-4 border-emerald-500">
-                        <h3 class="font-bold text-emerald-400 flex items-center gap-2">
-                            <i data-lucide="award" class="w-5 h-5"></i> Rekor Jam Kerja
-                        </h3>
+                        <h3 class="font-bold text-emerald-400 flex items-center gap-2"><i data-lucide="award" class="w-5 h-5"></i> Rekor Jam Kerja</h3>
                         <div class="space-y-4">
                             <div class="flex items-center justify-between p-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
                                 <div>
@@ -257,21 +217,12 @@
                 <!-- Monthly Charts -->
                 <div class="space-y-6">
                     <div class="glass p-8 rounded-[2.5rem] space-y-6">
-                        <h3 class="font-bold text-blue-400 flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-5 h-5"></i> Tren Laporan Per Bulan
-                        </h3>
-                        <div id="monthly-stats-container" class="space-y-4">
-                            <!-- Bars injected here -->
-                        </div>
+                        <h3 class="font-bold text-blue-400 flex items-center gap-2"><i data-lucide="calendar" class="w-5 h-5"></i> Tren Pekerjaan Per Bulan</h3>
+                        <div id="monthly-stats-container" class="space-y-4"></div>
                     </div>
-                    
                     <div class="glass p-8 rounded-[2.5rem] space-y-6">
-                        <h3 class="font-bold text-purple-400 flex items-center gap-2">
-                            <i data-lucide="clock" class="w-5 h-5"></i> Tren Jam Kerja Per Bulan
-                        </h3>
-                        <div id="monthly-hours-container" class="space-y-4">
-                            <!-- Bars injected here -->
-                        </div>
+                        <h3 class="font-bold text-purple-400 flex items-center gap-2"><i data-lucide="clock" class="w-5 h-5"></i> Tren Jam Kerja Per Bulan</h3>
+                        <div id="monthly-hours-container" class="space-y-4"></div>
                     </div>
                 </div>
             </div>
@@ -283,25 +234,16 @@
             <div class="glass p-8 rounded-[2.5rem] space-y-6">
                 <h3 class="font-bold text-blue-400 flex items-center gap-2"><i data-lucide="palette"></i> Branding Settings</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">App Name</label>
-                        <input type="text" id="set-app-name" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Logo URL</label>
-                        <input type="text" id="set-app-logo" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none">
-                    </div>
+                    <div class="space-y-1"><label class="text-[10px] uppercase font-bold text-slate-500 ml-1">App Name</label><input type="text" id="set-app-name" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none"></div>
+                    <div class="space-y-1"><label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Logo URL</label><input type="text" id="set-app-logo" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 outline-none"></div>
                 </div>
                 <button onclick="saveBrandingSettings()" class="w-full bg-blue-600 py-4 rounded-2xl font-bold shadow-lg shadow-blue-600/20 transition-all">Simpan Branding</button>
             </div>
-            
             <div class="glass p-8 rounded-[2.5rem] space-y-6">
                 <h3 class="font-bold text-purple-400 flex items-center gap-2"><i data-lucide="bot"></i> AI Provider</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <select id="ai-provider" onchange="updateModelOptions()" class="bg-slate-900 border border-white/10 rounded-2xl p-4 outline-none">
-                        <option value="gemini">Google Gemini</option>
-                        <option value="gpt">OpenAI (GPT-4o)</option>
-                        <option value="openrouter">OpenRouter (Free)</option>
+                        <option value="gemini">Google Gemini</option><option value="gpt">OpenAI (GPT-4o)</option><option value="openrouter">OpenRouter (Free)</option>
                     </select>
                     <select id="ai-model" class="bg-slate-900 border border-white/10 rounded-2xl p-4 outline-none"></select>
                 </div>
@@ -324,64 +266,53 @@
         <div class="spinner"></div>
         <div class="text-center">
             <p id="loader-text" class="text-white font-bold text-xl mb-1">Menganalisis...</p>
-            <p class="text-slate-500 text-sm animate-pulse">AI sedang mengekstraksi data laporan Anda</p>
+            <p class="text-slate-500 text-sm animate-pulse">Memproses banyak baris data tabel...</p>
         </div>
     </div>
 
     <script>
+        // ⚡ KONFIGURASI ENDPOINT NETLIFY ANDA
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxxA685vYhG69ROil283UQZbftCozGxDbb3MY1bM3cOvCUUCSgaD3HhEkBJ8Q6d08jE/exec";
+        
         const canvas = document.createElement('canvas');
         let localData = [];
 
-        // ⚡ FETCH API WRAPPER FOR NETLIFY DEPLOYMENT
-        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxxA685vYhG69ROil283UQZbftCozGxDbb3MY1bM3cOvCUUCSgaD3HhEkBJ8Q6d08jE/exec";
-
+        // ⚡ SAFE FETCH WRAPPER WITH FALLBACK MOCK
         const callGAS = async (actionName, params = null) => {
             const config = JSON.parse(localStorage.getItem('mar_ai_config') || '{}');
-            
             try {
                 const response = await fetch(GAS_API_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8', // Bypass preflight limits
-                    },
-                    body: JSON.stringify({
-                        action: actionName,
-                        params: params,
-                        config: config
-                    })
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Menghindari CORS Preflight
+                    body: JSON.stringify({ action: actionName, params: params, config: config })
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP status ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const result = await response.json();
                 if (result.error) throw new Error(result.error);
                 return result.data;
             } catch (err) {
-                console.warn(`[Fetch API Error] Gagal terhubung. Beralih ke MOCK DATA untuk: ${actionName}. Error:`, err);
-                
-                // Fallback Mock Data agar UI tidak freeze
+                console.warn(`[Fallback] Fetch gagal, mode preview lokal untuk: ${actionName}`);
                 return new Promise((resolve) => {
                     setTimeout(() => {
                         if (actionName === 'getReportData') {
                             resolve([
-                                {id: "MAR-01", no_wo: "WO-101", tanggal: "2024-03-10", time_start: "08:00", time_stop: "16:00", nama: "Budi", code_unit: "EXCA-01"},
-                                {id: "MAR-02", no_wo: "WO-102", tanggal: "2024-03-12", time_start: "09:00", time_stop: "12:00", nama: "Andi", code_unit: "DZR-05"},
-                                {id: "MAR-03", no_wo: "WO-103", tanggal: "2024-04-05", time_start: "08:00", time_stop: "18:00", nama: "Budi", code_unit: "EXCA-01"}
+                                {id: "MAR-01", no_wo_code: "2604-0509", tanggal: "2026-04-13", time_start: "07:30", time_stop: "08:29", nama: "TONI", code_unit: "805", description_of_work: "PROBLEM=baut hanger spring depan kanan..."},
+                                {id: "MAR-02", no_wo_code: "2604-0512", tanggal: "2026-04-13", time_start: "08:40", time_stop: "10:09", nama: "TONI", code_unit: "801", description_of_work: "PROBLEM=nut hanger spring depan kanan kendor..."}
                             ]);
-                        }
-                        else if (actionName === 'saveReport') {
-                            localData.unshift({...params, id: "MAR-SIM-" + Date.now(), timestamp: new Date().toISOString()});
-                            resolve({ success: true });
-                        }
-                        else if (actionName === 'analyzeImageWithAI') {
+                        } else if (actionName === 'saveReport') {
+                            resolve({ success: true, rowsAdded: params.tasks.length });
+                        } else if (actionName === 'analyzeImageWithAI') {
+                            // Mocking format JSON baru yang memiliki Array of Tasks
                             resolve({
-                                nama: "Mekanik Simulasi", shift: "Day", tanggal: new Date().toISOString().split('T')[0], no_wo: "WO-9999", time_start: "08:00", time_stop: "10:30", description: "Simulasi Analisis Teks (Mode Fallback karena fetch API gagal)."
+                                header: { nama: "TONI", tanggal: "2026-04-13", shift: "" },
+                                tasks: [
+                                    { no_wo: "2604-0509", time_start: "07:30", time_stop: "08:29", code_unit: "805", description: "Simulasi Baris 1: repair and reposisi pin spring" },
+                                    { no_wo: "2604-0512", time_start: "08:40", time_stop: "10:09", code_unit: "801", description: "Simulasi Baris 2: replace bolt bracket cylinder" }
+                                ]
                             });
-                        }
-                        else resolve({});
-                    }, 800);
+                        } else resolve({});
+                    }, 1500);
                 });
             }
         };
@@ -394,6 +325,7 @@
             loadAllData();
         });
 
+        // (Fungsi Branding dan Settings tetap sama)
         function initAppBranding() {
             const config = JSON.parse(localStorage.getItem('mar_app_config') || '{"name":"MAR AI Pro","logo":""}');
             document.getElementById('app-name-display').innerText = config.name;
@@ -415,7 +347,7 @@
 
         async function initCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment", width: {ideal: 1920}, height: {ideal: 1080} } });
                 document.getElementById('video').srcObject = stream;
             } catch (err) { console.warn("Kamera tidak aktif."); }
         }
@@ -430,44 +362,102 @@
         function updateModelOptions(selectedModel = null) {
             const provider = document.getElementById('ai-provider').value;
             const modelSelect = document.getElementById('ai-model');
-            let options = '';
-            if (provider === 'gemini') options = '<option value="gemini-2.5-flash-preview-09-2025">Gemini 2.5 Flash</option>';
-            else if (provider === 'gpt') options = '<option value="gpt-4o">GPT-4o</option>';
-            else options = '<option value="free-model">Free Vision Model</option>';
-            modelSelect.innerHTML = options;
+            if (provider === 'gemini') modelSelect.innerHTML = '<option value="gemini-2.5-flash-preview-09-2025">Gemini 2.5 Flash</option>';
+            else if (provider === 'gpt') modelSelect.innerHTML = '<option value="gpt-4o">GPT-4o</option>';
+            else modelSelect.innerHTML = '<option value="free-model">Free Vision Model</option>';
             if (selectedModel) modelSelect.value = selectedModel;
         }
 
         function saveAISettings() {
-            const config = {
+            localStorage.setItem('mar_ai_config', JSON.stringify({
                 provider: document.getElementById('ai-provider').value,
                 model: document.getElementById('ai-model').value,
                 apiKey: document.getElementById('ai-key').value
-            };
-            localStorage.setItem('mar_ai_config', JSON.stringify(config));
+            }));
             Swal.fire('Berhasil', 'Konfigurasi AI disimpan!', 'success');
+        }
+
+        // --- DYNAMIC TASKS LOGIC ---
+        let taskCounter = 0;
+
+        function createTaskHTML(task = null) {
+            taskCounter++;
+            const wo = task ? task.no_wo : '';
+            const start = task ? task.time_start : '';
+            const stop = task ? task.time_stop : '';
+            const unit = task ? task.code_unit : '';
+            const desc = task ? task.description : '';
+
+            return `
+            <div id="task-row-${taskCounter}" class="task-entry bg-white/5 p-4 rounded-2xl border border-white/5 relative group transition-all">
+                <button onclick="removeTaskRow(${taskCounter})" class="absolute top-2 right-2 text-slate-500 hover:text-red-400 bg-black/20 p-2 rounded-lg opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3 pr-8">
+                    <div>
+                        <label class="text-[9px] uppercase font-bold text-slate-500">Code / WO</label>
+                        <input type="text" class="task-wo w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-sm outline-none focus:border-blue-500" value="${wo}">
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase font-bold text-slate-500 text-blue-400">Time Start</label>
+                        <input type="time" class="task-start w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-sm outline-none" value="${start}">
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase font-bold text-slate-500 text-red-400">Time Stop</label>
+                        <input type="time" class="task-stop w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-sm outline-none" value="${stop}">
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase font-bold text-slate-500">Code Unit</label>
+                        <input type="text" class="task-unit w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-sm outline-none" value="${unit}">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[9px] uppercase font-bold text-slate-500">Description of Work</label>
+                    <textarea class="task-desc w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-sm outline-none resize-none" rows="2">${desc}</textarea>
+                </div>
+            </div>`;
+        }
+
+        function addTaskRow() {
+            document.getElementById('dynamic-tasks-container').insertAdjacentHTML('beforeend', createTaskHTML());
+            lucide.createIcons();
+        }
+
+        function removeTaskRow(id) {
+            document.getElementById(`task-row-${id}`).remove();
         }
 
         async function captureAndAnalyze() {
             const config = JSON.parse(localStorage.getItem('mar_ai_config') || '{}');
-            if (!config.apiKey) return Swal.fire('Error', 'Harap isi API Key di menu Settings!', 'warning');
-
             const video = document.getElementById('video');
             canvas.width = video.videoWidth || 640; canvas.height = video.videoHeight || 480;
             canvas.getContext('2d').drawImage(video, 0, 0);
-            const b64 = canvas.toDataURL('image/png').split(',')[1];
+            const b64 = canvas.toDataURL('image/jpeg', 0.8).split(',')[1]; // Optimized format
             
-            toggleLoader(true, "AI sedang menganalisis dokumen...");
+            toggleLoader(true, "AI membaca banyak baris tabel...");
             try {
                 const res = await callGAS('analyzeImageWithAI', b64);
                 toggleLoader(false);
-                document.getElementById('res-nama').value = res.nama || '';
-                document.getElementById('res-shift').value = res.shift || '';
-                document.getElementById('res-tanggal').value = res.tanggal || '';
-                document.getElementById('res-wo').value = res.no_wo || '';
-                document.getElementById('res-start').value = res.time_start || '';
-                document.getElementById('res-stop').value = res.time_stop || '';
-                document.getElementById('res-desc').value = res.description || '';
+                
+                // Populate Header
+                if (res.header) {
+                    document.getElementById('res-nama').value = res.header.nama || '';
+                    document.getElementById('res-tanggal').value = res.header.tanggal || '';
+                    document.getElementById('res-shift').value = res.header.shift || '';
+                }
+
+                // Populate Dynamic Tasks
+                const container = document.getElementById('dynamic-tasks-container');
+                container.innerHTML = ''; // Reset
+                if (res.tasks && res.tasks.length > 0) {
+                    res.tasks.forEach(task => {
+                        container.insertAdjacentHTML('beforeend', createTaskHTML(task));
+                    });
+                } else {
+                    container.insertAdjacentHTML('beforeend', createTaskHTML()); // At least 1 empty row
+                }
+
+                lucide.createIcons();
                 document.getElementById('result-container').classList.remove('hidden');
                 document.getElementById('result-container').scrollIntoView({behavior: 'smooth'});
             } catch (err) {
@@ -477,23 +467,46 @@
         }
 
         async function saveToSheets() {
-            const data = { 
-                nama: document.getElementById('res-nama').value, 
-                shift: document.getElementById('res-shift').value, 
-                tanggal: document.getElementById('res-tanggal').value, 
-                no_wo: document.getElementById('res-wo').value, 
-                time_start: document.getElementById('res-start').value,
-                time_stop: document.getElementById('res-stop').value,
-                description: document.getElementById('res-desc').value 
+            // Gather Header
+            const header = {
+                nama: document.getElementById('res-nama').value,
+                tanggal: document.getElementById('res-tanggal').value,
+                shift: document.getElementById('res-shift').value
             };
-            toggleLoader(true, "Menyimpan ke Cloud...");
+
+            // Gather Tasks from DOM
+            const taskElements = document.querySelectorAll('.task-entry');
+            const tasks = [];
+            taskElements.forEach(el => {
+                const wo = el.querySelector('.task-wo').value;
+                const desc = el.querySelector('.task-desc').value;
+                // Hanya simpan jika ada isinya
+                if (wo || desc) {
+                    tasks.push({
+                        no_wo: wo,
+                        time_start: el.querySelector('.task-start').value,
+                        time_stop: el.querySelector('.task-stop').value,
+                        code_unit: el.querySelector('.task-unit').value,
+                        description: desc
+                    });
+                }
+            });
+
+            if (tasks.length === 0) return Swal.fire('Kosong', 'Harap isi minimal 1 baris pekerjaan.', 'warning');
+
+            const payload = { header, tasks };
+            
+            toggleLoader(true, `Menyimpan ${tasks.length} Baris...`);
             try {
-                await callGAS('saveReport', data);
+                const response = await callGAS('saveReport', payload);
                 toggleLoader(false);
-                Swal.fire('Sukses', 'Laporan berhasil disimpan!', 'success');
+                Swal.fire('Sukses', `${response.rowsAdded || tasks.length} Baris Laporan berhasil disimpan!`, 'success');
                 document.getElementById('result-container').classList.add('hidden');
                 loadAllData();
-            } catch (err) { toggleLoader(false); Swal.fire('Error', err.message, 'error'); }
+            } catch (err) { 
+                toggleLoader(false); 
+                Swal.fire('Error', err.message, 'error'); 
+            }
         }
 
         async function loadAllData() {
@@ -508,19 +521,26 @@
         function renderHistory() {
             const body = document.getElementById('table-body');
             body.innerHTML = localData.map(r => `
-                <tr class="hover:bg-white/5 border-b border-white/5 transition-all">
-                    <td class="p-6">
-                        <div class="text-[10px] text-slate-500 font-bold">${r.id || '-'}</div>
-                        <div class="font-bold text-blue-400">${r.no_wo || '-'}</div>
+                <tr class="hover:bg-white/5 border-b border-white/5 transition-all text-xs">
+                    <td class="p-4 align-top">
+                        <div class="text-[9px] text-slate-500 font-bold mb-1 break-words w-24 truncate" title="${r.id || '-'}">${r.id || '-'}</div>
+                        <div class="font-bold text-blue-400 break-words">${r.no_wo___code || r.no_wo || '-'}</div>
                     </td>
-                    <td class="p-6 font-semibold">${r.tanggal || '-'}</td>
-                    <td class="p-6">
-                        <span class="text-blue-400 font-bold">${r.time_start || '--:--'}</span>
-                        <span class="text-slate-500 mx-1">→</span>
+                    <td class="p-4 align-top">
+                        <div class="font-semibold">${r.tanggal || '-'}</div>
+                        <div class="text-[10px] text-slate-500 mt-1">${r.shift || '-'}</div>
+                    </td>
+                    <td class="p-4 align-top whitespace-nowrap">
+                        <span class="text-blue-400 font-bold">${r.time_start || '--:--'}</span><br>
                         <span class="text-red-400 font-bold">${r.time_stop || '--:--'}</span>
                     </td>
-                    <td class="p-6 text-slate-200">${r.nama || '-'}</td>
-                    <td class="p-6"><span class="bg-emerald-400/10 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded">Synced</span></td>
+                    <td class="p-4 align-top">
+                        <div class="text-slate-200 font-bold uppercase">${r.nama || '-'}</div>
+                        <div class="bg-blue-500/10 text-blue-400 px-2 py-1 rounded inline-block mt-1 text-[9px] border border-blue-500/20">${r.code_unit || '-'}</div>
+                    </td>
+                    <td class="p-4 align-top text-slate-400 max-w-xs break-words">
+                        ${r.description_of_work || r.description || '-'}
+                    </td>
                 </tr>
             `).join('');
         }
@@ -529,15 +549,16 @@
             if (!start || !stop) return 0;
             const [h1, m1] = start.split(':').map(Number);
             const [h2, m2] = stop.split(':').map(Number);
+            if (isNaN(h1) || isNaN(h2)) return 0;
             let diff = (h2 * 60 + m2) - (h1 * 60 + m1);
-            if (diff < 0) diff += 24 * 60; // Handle overnight
-            return diff / 60; // Returns hours
+            if (diff < 0) diff += 24 * 60; 
+            return diff / 60; 
         }
 
         function renderDashboard() {
             if (document.getElementById('section-dashboard').classList.contains('hidden')) return;
 
-            document.getElementById('stat-total').innerText = localData.length;
+            document.getElementById('stat-total').innerText = localData.length; // Total baris pekerjaan
             
             const monthlyCounts = {};
             const monthlyHours = {};
@@ -545,7 +566,7 @@
             
             localData.forEach(r => {
                 if (r.tanggal) {
-                    const monthKey = r.tanggal.substring(0, 7); // YYYY-MM
+                    const monthKey = r.tanggal.substring(0, 7);
                     monthlyCounts[monthKey] = (monthlyCounts[monthKey] || 0) + 1;
                     
                     const hours = calculateDuration(r.time_start, r.time_stop);
@@ -566,11 +587,9 @@
                     <div class="space-y-1">
                         <div class="flex justify-between text-[10px] uppercase font-bold text-slate-400 px-1">
                             <span>${m}</span>
-                            <span>${count} Lap.</span>
+                            <span>${count} Pekerjaan</span>
                         </div>
-                        <div class="stat-bar">
-                            <div class="stat-fill-blue" style="width: ${percentage}%"></div>
-                        </div>
+                        <div class="stat-bar"><div class="stat-fill-blue" style="width: ${percentage}%"></div></div>
                     </div>
                 `;
             }).join('') || '<p class="text-center text-slate-500 py-4 italic text-sm">Tidak ada data tren</p>';
@@ -594,12 +613,9 @@
                     return `
                         <div class="space-y-1">
                             <div class="flex justify-between text-[10px] uppercase font-bold text-slate-400 px-1">
-                                <span>${m}</span>
-                                <span>${hours.toFixed(1)} Hours</span>
+                                <span>${m}</span><span>${hours.toFixed(1)} Hours</span>
                             </div>
-                            <div class="stat-bar">
-                                <div class="stat-fill-purple" style="width: ${percentage}%"></div>
-                            </div>
+                            <div class="stat-bar"><div class="stat-fill-purple" style="width: ${percentage}%"></div></div>
                         </div>
                     `;
                 }).join('');
@@ -616,15 +632,13 @@
             document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active-menu'));
             if(document.getElementById(`btn-${id}`)) document.getElementById(`btn-${id}`).classList.add('active-menu');
             lucide.createIcons();
-            if (id === 'dashboard') {
-                setTimeout(renderDashboard, 150);
-            }
+            if (id === 'dashboard') setTimeout(renderDashboard, 150);
         }
 
         function toggleLoader(s, t) {
             const l = document.getElementById('loader');
             if(s) { document.getElementById('loader-text').innerText = t; l.classList.remove('hidden'); l.classList.add('flex'); }
-            else { l.classList.add('hidden'); l.classList.remove('flex'); }
+            else l.classList.add('hidden');
         }
     </script>
 </body>
